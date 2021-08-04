@@ -6,7 +6,7 @@ This repo is meant to reproduce [GITOPS-1247](https://issues.redhat.com/browse/G
 
 In order to have the default cluster-level Argo CD instance that is installed by the OpenShift GitOps operator create more instances of Argo CD (for example, for dev teams), the new namespacde has to have the `argocd.argoproj.io/managed-by:` label set with a value of `openshift-gitops`.  Without this label, the default Argo CD can't create an `argocd` instance in that namespace.
 
-The `openshift-gitops` default Argo CD instancde can create this new namespace with the correct label just fine.  The issue occurs when the new `argocd` instance is created.
+The `openshift-gitops` default Argo CD instance can create this new namespace with the correct label just fine.  The issue occurs when the new `argocd` instance is created.
 
 As soon as the OpenShift GitOps operator starts to create the new Argo CD instance (for example, in a namespace called `developer-argocd`), the `managed-by` label gets changed to the name of this namespace (in this case, `developer-argocd`).
 
