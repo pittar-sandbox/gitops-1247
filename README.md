@@ -10,7 +10,7 @@ The `openshift-gitops` default Argo CD instance can create this new namespace wi
 
 As soon as the OpenShift GitOps operator starts to create the new Argo CD instance (for example, in a namespace called `developer-argocd`), the `managed-by` label gets changed to the name of this namespace (in this case, `developer-argocd`).
 
-This will now cause an infinite "OutOfSync" loop for the Argo CD "Appliation" that is in the default Argo CD instance, as it will continually try to reset the `managed-by` label value to `openshift-gitops`, but the OpenShift GitOps operator will also continualy try to reset that same label value to `developer-argocd`.
+This will now cause an infinite "OutOfSync" loop for the Argo CD "Appliation" that is in the default Argo CD instance, as it will continually try to reset the `managed-by` label value to `openshift-gitops`, but the OpenShift GitOps operator will also continually try to reset that same label value to `developer-argocd`.
 
 ## How To Reproduce This Issue
 
