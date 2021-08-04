@@ -18,7 +18,7 @@ Start with a cluster that has the OpenShift GitOps (v1.2) operator installed.
 
 Run the following command:
 ```
-oc apply -k blah
+oc apply -k https://github.com/pittar-sandbox/gitops-1247/app
 ```
 
 This will create a new Argo CD `Application` in the `openshift-gitops` namespace that is associated with the `default` project.  Argo CD will then:
