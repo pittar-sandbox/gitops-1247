@@ -26,4 +26,14 @@ This will create a new Argo CD `Application` in the `openshift-gitops` namespace
 1. Create a new namespace (`gitops-1247-argocd`) with the `managed-by` label set to `openshift-gitops`
 2. Create a new instance of Argo CD in this namespace.
 
-After a moment, you will notice that this Argo CD application in the main Argo CD instance deployed by OpenShift GitOps is continually "OutOfSync" as it fights with the operator to set the `managed-by` label value correctly.
+After a moment, you will notice that this Argo CD application in the main Argo CD instance deployed by OpenShift GitOps is green and in sync!
+
+**However**, as soon as you set a new namespace to be "managed-by" this new Argo CD instance, it will go "out of sync" in the "openshift-gitops" Argo CD instance.
+
+```
+oc new-project argocd-out-of-sync
+oc label namespace argocd-out-of-sync argocd.argoproj.io/managed-by=gitops-1247-argocd
+```
+
+A few seconds are this "managed-by" label is applied, the Argo CD application in the `openshift-gitops` Argo CD UI will go "out of sync".  If you drill into it, you will see a number of roles and role bindings that were created in order to manage this new namespace, however, they are all reporting "out of sync".
+
